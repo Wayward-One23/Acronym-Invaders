@@ -208,7 +208,7 @@ int showTitleScreen(sf::RenderWindow& window) {
 
     // Load background texture
     sf::Texture backgroundTexture;
-    if (!backgroundTexture.loadFromFile("background.jpg")) {
+    if (!backgroundTexture.loadFromFile("Textures/background.jpg")) {
         std::cerr << "Error loading background texture\n";
         return -1;
     }
@@ -302,7 +302,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
         // Load background texture
         sf::Texture backgroundTexture;
-        if (!backgroundTexture.loadFromFile("background.jpg")) {
+        if (!backgroundTexture.loadFromFile("Textures/background.jpg")) {
             std::cerr << "Error loading background texture\n";
             return -1;
         }
@@ -316,10 +316,12 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
         // Load multiple spaceship textures
         std::vector<sf::Texture> spaceshipTextures;
+        std::string basePath = "Textures/"; // Define the new directory path
         for (int i = 1; i <= 4; ++i) { // Assuming you have 4 spaceship images named 1.png, 2.png, 3.png, and 4.png
             sf::Texture texture;
-            if (!texture.loadFromFile(std::to_string(i) + ".png")) {
-                std::cerr << "Error loading spaceship texture " << i << "\n";
+            std::string filePath = basePath + std::to_string(i) + ".png"; // Concatenate the directory path with the filename
+            if (!texture.loadFromFile(filePath)) {
+                std::cerr << "Error loading spaceship texture " << i << " from " << filePath << "\n";
                 return -1;
             }
             spaceshipTextures.push_back(texture);
